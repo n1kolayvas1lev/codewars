@@ -1,11 +1,11 @@
-def get_start_time(schedules: list, duration: int) -> str|None:
+def get_start_time(schedules: list, duration: int) -> str | None:
     duration /= 60
-    first_guy_starts = (schedules[0][0][0], schedules[0][1][0], schedules[0][2][0], schedules[0][3][0])
-    first_guy_ends = (schedules[0][0][1], schedules[0][1][1], schedules[0][2][1], schedules[0][3][1])
-    second_guy_starts = (schedules[1][0][0], schedules[1][1][0], schedules[1][2][0])
-    second_guy_ends = (schedules[1][0][1], schedules[1][1][1], schedules[1][2][1])
-    third_guy_starts = (schedules[2][0][0], schedules[2][1][0], schedules[2][2][0])
-    third_guy_ends = (schedules[2][0][1], schedules[2][1][1], schedules[2][2][1])
+    first_guy_starts = list(schedules[0][i][0] for i in range(len(schedules[0])))
+    first_guy_ends = list(schedules[0][i][1] for i in range(len(schedules[0])))
+    second_guy_starts = list(schedules[1][i][0] for i in range(len(schedules[1])))
+    second_guy_ends = list(schedules[1][i][1] for i in range(len(schedules[1])))
+    third_guy_starts = list(schedules[2][i][0] for i in range(len(schedules[2])))
+    third_guy_ends = list(schedules[2][i][1] for i in range(len(schedules[2])))
 
     first_guy_starts = list(int(i[0]) * 10 + int(i[1]) + (int(i[-2]) * 10 + int(i[-1])) / 60 for i in first_guy_starts)
     first_guy_ends = list(int(i[0]) * 10 + int(i[1]) + (int(i[-2]) * 10 + int(i[-1])) / 60 for i in first_guy_ends)
@@ -23,7 +23,7 @@ def get_start_time(schedules: list, duration: int) -> str|None:
     if len(third_guy_starts) < len(first_guy_starts):
         third_guy_starts.append(19.0)
     available_starts = []
-    if first_guy_starts[0] >= 10 and second_guy_starts[0] >= 10 and third_guy_starts[0] >= 10:
+    if first_guy_starts[0] >= 9.0 + duration and second_guy_starts[0] >= 9.0 + duration and third_guy_starts[0] >= 9.0 + duration:
         available_starts.append(9.0)
     for i in range(len(first_guy_starts) - 1):
         first = first_guy_starts[i + 1] - first_guy_ends[i]
