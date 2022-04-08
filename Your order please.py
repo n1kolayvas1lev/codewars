@@ -23,11 +23,12 @@ def order(sentence: str) -> str:
         for i in range(len(new_order)):
             output_str += new_order[i + 1]
             output_str += ' '
-    output_str.strip()
+    output_str = output_str[0: -1]  # rstrip?
     return output_str
 
 
 
 if __name__ == '__main__':
-    print(order("is2 Thi1s T4est 3a"))
-    print(order("4of Fo1r pe6ople g3ood th5e the2"))
+    order("is2 Thi1s T4est 3a")
+    # print(order("is2 Thi1s T4est 3a"))
+    # print(order("4of Fo1r pe6ople g3ood th5e the2"))
